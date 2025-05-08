@@ -1,8 +1,12 @@
 import "@workspace/ui/globals.css"
-import "@/app/styles/globals.css"
+import { Toaster } from "@workspace/ui/components/sonner"
 
-import { ThemeProvider } from "@/app/providers"
+import {
+  TanstackProvider,
+  ThemeProvider,
+} from "@/app/providers"
 import { Pretendard } from "@/app/fonts"
+import "@/app/styles/globals.css"
 
 export default function RootLayout({
   children,
@@ -13,7 +17,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${Pretendard.variable} font-sans antialiased `}>
         <ThemeProvider>
-          {children}
+          <TanstackProvider>
+            {children}
+          </TanstackProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
