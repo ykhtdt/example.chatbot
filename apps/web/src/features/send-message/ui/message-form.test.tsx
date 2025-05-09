@@ -38,6 +38,8 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
     })
   )
 
+  const handleCancel = vi.fn()
+
   beforeEach(() => {
     vi.useFakeTimers()
   })
@@ -49,7 +51,7 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
   })
 
   it("메시지를 입력할 수 있는 Input이 렌더링 되어야 한다.", () => {
-    render(<MessageForm onSubmit={handleSubmit} />)
+    render(<MessageForm onSubmit={handleSubmit} onCancel={handleCancel} />)
 
     const messageInput = screen.getByTestId("message-input")
 
@@ -58,7 +60,7 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
   })
 
   it("입력한 메시지를 제출할 수 있는 Button이 렌더링 되어야 한다.", () => {
-    render(<MessageForm onSubmit={handleSubmit} />)
+    render(<MessageForm onSubmit={handleSubmit} onCancel={handleCancel} />)
 
     const submitButton = screen.getByTestId("submit-button")
 
@@ -67,7 +69,7 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
   })
 
   it("제출한 메시지를 취소할 수 있는 Button이 렌더링 되어야 한다.", async () => {
-    render(<MessageForm onSubmit={handleSubmit} />)
+    render(<MessageForm onSubmit={handleSubmit} onCancel={handleCancel} />)
 
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
 
@@ -84,7 +86,7 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
   })
 
   it("응답 완료 후 다시 제출 버튼이 렌더링되어야 한다.", async () => {
-    render(<MessageForm onSubmit={handleSubmit} />)
+    render(<MessageForm onSubmit={handleSubmit} onCancel={handleCancel} />)
 
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
 
