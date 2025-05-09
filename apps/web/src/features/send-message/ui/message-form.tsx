@@ -35,7 +35,7 @@ const FormSchema = z.object({
 
 interface MessageFormProps {
   onSubmit: (message: string) => Promise<void>
-  onCancel?: () => void
+  onCancel: () => void
 }
 
 export const MessageForm = memo(({
@@ -52,10 +52,6 @@ export const MessageForm = memo(({
   })
 
   const handleCancel = () => {
-    if (!onCancel) {
-      return
-    }
-
     onCancel()
     setIsLoading(false)
   }
