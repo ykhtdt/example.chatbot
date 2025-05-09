@@ -103,3 +103,7 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
     expect(newSubmitButton).toBeInstanceOf(HTMLButtonElement)
   })
 })
+
+/**
+ * 사용자 인터랙션에 의한 핵심에 대해 기능 테스트를 진행한다.
+ */
