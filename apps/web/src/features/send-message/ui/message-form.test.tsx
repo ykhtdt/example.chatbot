@@ -96,8 +96,6 @@ describe("MessageForm이 정상적으로 렌더링 되어야 한다.", () => {
 
     vi.advanceTimersByTime(150)
 
-    vi.runAllTicks()
-
     const newSubmitButton = await screen.findByTestId("submit-button")
     expect(newSubmitButton).toBeDefined()
     expect(newSubmitButton).toBeInstanceOf(HTMLButtonElement)
