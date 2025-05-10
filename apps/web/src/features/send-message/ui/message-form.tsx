@@ -3,6 +3,7 @@
 import {
   memo,
   useState,
+  useRef,
 } from "react"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -43,6 +44,7 @@ export const MessageForm = memo(({
   onCancel,
 }: MessageFormProps) => {
   const [isLoading, setIsLoading] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -92,7 +94,17 @@ export const MessageForm = memo(({
                 Message
               </FormLabel>
               <FormControl>
-                <Input placeholder="메시지를 입력하세요." disabled={isLoading} data-testid="message-input" {...field} />
+                <Input
+                  {...field}
+                  placeholder="메시지를 입력하세요."
+                  disabled={isLoading}
+                  ref={(node) => {
+                    field.ref(node)
+                    inputRef.current = node
+                    inputRef.current?.focus()
+                  }}
+                  data-testid="message-input"
+                />
               </FormControl>
               <FormDescription className="sr-only">
                 메시지를 입력하세요.
